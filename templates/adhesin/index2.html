@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>Adhesin Predictor</title>
+    {% load staticfiles %}
+    <link href="/static/adhesin/css/first.css" type="text/css"
+			 rel="stylesheet" />
+    <link href="/static/adhesin/css/styles.css" type="text/css"
+			 rel="stylesheet" />
+</head>
+
+    <body>
+    <div id="header">
+        <a href="http://www.bicniced.org/"><img src="/static/adhesin/img/logo.png" class="small"  alt="niced logo"/></a>
+             
+	        <li><a href="#Home">Home</a></a></li>
+            <li><a href="#Details">Predictor details</a></li>
+	        <li><a href="#Help">Help</a></li>
+            <li><a href="#Download">Download</a></li>
+	        <li><a href="#About">About</a></li>
+	        <li><a href="#Contact">Contact</a></li>
+	        <li padding-right = '2%' color='black'><b>   Bacterial Adhesin Predictor  </b><li>
+
+    </div>
+    <div id="Home" class="block1"><h1 align = "center">Adhesin Predictor</h1>
+    <div id="formh">
+    <div class = "form">
+    <form id="myForm" action="{% url 'adhesin:inText' %}" method="post">
+        {% csrf_token %}
+        Enter the amino-acid sequence (FASTA format):<br>
+        <textarea name="seq" rows="4" cols="44" required="required">&gt{{ sample }}</textarea><br>
+        <p><select name="algo">
+            <option value="R">Random Forest</option>
+            <option value="L">Logistic Regression</option>
+            <option value="D">Decision Tree Classifier</option>
+            <option value="S">Support Vector Machine</option>
+            <option value="G">Gaussian NB</option>
+            <option value="K">K Neighbour Classifier</option>
+        </select></p>
+        <p>Threshold :  <select name="thr">
+            <option value="0">None</option>
+            <option value="0.6">0.6</option>
+            <option value="0.7">0.7</option>
+            <option value="0.8">0.8</option>
+            <option value="0.9">0.9</option>
+        </select></p>
+        <p><label></label><input type="text" name="E-mail"  placeholder="E-mail" required="required"/></p>
+        <input type="submit" value="Submit" />
+    </form>
+
+    </div>
+    <div class = "form">
+    <form enctype="multipart/form-data" action="{% url 'adhesin:wait' %}" method="post">
+        {% csrf_token %}
+        Upload Sequence file:    [Only upload plain text fasta file]
+        <p>File :    <input type="file" name="upFile" required="required" /></p>
+        <p>Results per page : <input type="number"  name="perPage" size="2" maxlength="2" value="20" required="required"/></p>
+        <p>Classifier Algorithm : 
+	        <select name="algo">
+            <option value="R">Random Forest</option>
+            <option value="L">Logistic Regression</option>
+            <option value="D">Decision Tree Classifier</option>
+            <option value="S">Support Vector Machine</option>
+            <option value="G">Gaussian NB</option>
+            <option value="K">K Neighbour Classifier</option>
+            </select></p>
+            <p>Threshold :  <select name="thr">
+            <option value="0">None</option>
+            <option value="0.6">0.6</option>
+            <option value="0.7">0.7</option>
+            <option value="0.8">0.8</option>
+            <option value="0.9">0.9</option>
+            </select></p>
+            <p><label></label><input type="text" name="E-mail"  placeholder="E-mail" required="required"/></p>
+            <input type="submit" value="Upload"/>
+    </form>
+    </div>
+    </div>
+        </div>
+    <div id = "Details" class="block2"><h2>Predictor Details</h2></div>
+    <div id = "Help" class="block1"><h2>Help</h2></div>
+    <div id = "Download" class="block2"><h2>Download</h2></div>
+    <div id = "About" class="block1"><h2>About</h2></div>
+    <div id = "Contact" class="block2"><h2>Contact</h2></div>
+    </body>
+</html>

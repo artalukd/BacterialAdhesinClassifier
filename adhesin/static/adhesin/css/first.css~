@@ -1,0 +1,42 @@
+#header li{ display: inline-block;
+         color: white;
+         padding: 30px 10px 0px 20px;
+         margin: 0px 0px 0px 0px;
+         float: right;
+         cursor: pointer;
+             }
+#header a:link{ color: white;}
+#header a:visited{ color: white;}
+#header a:hover{ background-color:white;
+                color:black;}
+ #header a:active{ background-color:white;
+                    color:black;
+}
+#header{border-bottom : 2px solid;
+        overflow: auto;
+        width: 100%;
+        margin:0px;
+        position: fixed;
+        top: 0px;
+          background: blue; /* For browsers that do not support gradients */
+  /* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(left,white,white,rgb(14, 180, 224),rgb(10, 145,210 ),rgb(5, 133, 200));
+  /* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(left,white,white,rgb(14, 180, 224),rgb(10, 145,210 ),rgb(5, 133, 209));
+  /* For Fx 3.6 to 15 */
+  background: -moz-linear-gradient(left,white,white,rgb(14, 180, 224),rgb(10, 145,210 ),rgb(5, 133, 209));
+  /* Standard syntax */
+  background: linear-gradient(to right, white,white,rgb(14, 180, 224),rgb(10, 145,210 ),rgb(5, 133, 209));
+        }
+html, body {
+    margin: 0;
+    height: 100%;
+}
+img.small{  display: inline;
+            cursor: pointer;
+            width: 10%;
+            margin: 0.25% 0.5% 0.25% 0.5%;
+            margin-bottom:0px;
+            padding: 0.5%;
+            padding-bottom:0px;
+    }

@@ -1,0 +1,61 @@
+# Create your models here.
+from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
+from django.db import models
+from time import strftime
+from myproject.settings import MEDIA_ROOT
+import os
+
+
+def user_directory_path(instance, filename):
+        a = os.path.join(MEDIA_ROOT, strftime('fileUpload/'))
+        a += str(instance.pub_date) + str(instance.address)
+        return a
+
+
+@python_2_unicode_compatible
+class ProteinData(models.Model):
+    pub_date = models.CharField(max_length=10, default=strftime('%m_%d_'))
+    algo = models.CharField(default='R',max_length=1)
+    inFormat = models.CharField(max_length=1, default='F')
+    def __str__(self):
+        return str(self.pk)
+
+# Create your models here.
+
+@python_2_unicode_compatible
+class FileData(models.Model):
+    address = models.IntegerField(primary_key=True)
+    pub_date = models.CharField(max_length=12, default=strftime('%m_%d_'))
+    perPage = models.IntegerField(default=10)
+    algo = models.CharField(default='R',max_length=1)
+    upFile = models.FileField(upload_to=user_directory_path)
+    total = models.IntegerField(default=0)
+    thr_total = models.IntegerField(default=0)
+    inFormat = models.CharField(max_length=1, default='F')
+
+    def __str__(self):
+        return str(self.pk)
+
+
+@python_2_unicode_compatible
+class FASTA(models.Model):
+    header = models.CharField(max_length=200)
+    sequence = models.CharField(max_length=400)
+    ans = models.DecimalField(max_digits=3, decimal_places=2)
+    cls = models.BooleanField(default = False)
+    rank = models.IntegerField(default=1)
+    address = models.CharField(default='1',max_length=15)
+    def __str__(self):
+        return self.header[1:15]
+        
+@python_2_unicode_compatible
+class user_details(models.Model):
+    org = models.CharField(max_length = 40, default='unknown')
+    email = models.EmailField()
+    country_cd = models.CharField(max_length=2)
+    address = models.CharField(max_length = 40, primary_key=True )
+    mode = models.CharField(max_length =1)
+
+    def __str__(self):
+        return self.org 

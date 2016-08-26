@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adhesin Detector Result</title>
+    <link href="/static/adhesin/css/first.css" type="text/css"
+			 rel="stylesheet" />
+    <script src="/static/adhesin/js/first.js"></script>
+</head>
+<body>
+    <div id="header">
+        <a href="http://www.bicniced.org/"><img src="/static/adhesin/img/logo.png" class="small"  alt="niced logo"/></a>
+            <img src="/static/adhesin/img/header-2.png" class="medium"  />
+	        <img src="/static/adhesin/img/header-2.png" class="medium"  />
+	         <li><a href="/adhesin/#Contact">Contact</a></li>
+	        <li><a href="/adhesin/#Citation">Citation</a></li>
+	         <li><a href="/adhesin/#Help">Help</a></li>
+	        <li><a href="/adhesin/#About">About</a></li>
+	        <li><a href="/adhesin/#face">Home</a></a></li>
+    </div>
+    <div style="padding: 7% 1% 4% 3%">
+    <h1>Your file has been successfully uploaded.</h1>
+    <p> A total of {{ total }} valid FASTA sequences were detected.<p>
+    <p> It is going to take about {{ time }} mins to compile your results.</p>
+    <form action="{% url 'adhesin:inFile' %}" method="post">
+    <p>The results will appear in this page, do not refresh or go back.</p>
+  
+        {% csrf_token %}<label>Run Predictor : </label><input type="submit" value="Go!"/>
+            <input type='hidden' name="value"  value="{{ key }}" />
+            <input type='hidden' name="thr"  value="{{ thr }}" />
+        <input type="Hidden" name="fname"  value="{{ fname }}"   />
+                <input type="Hidden" name="email"  value="{{ email }}"   />
+         <p>Results per page : <input type="number" min = "1"  name="perPage" size="2" maxlength="2" value="20" required="required"/></p>
+        
+        </form>
+    <br>{% if err_no %}
+    <p><label>You submitted {{ err_no }} Invalid Input which is/are:</label></p>
+            {% for er in err %}
+                {{ er.header }}<br>
+            {% endfor %}
+            <br>The input protein text/file has errors. Either sequence(s) is/are absent or contains non standard amino acid character or the ID's are invalid.<br>
+            <br>
+        {% endif %}
+       
+<br>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adhesin Detector Result</title>
+    <link href="/static/adhesin/css/first.css" type="text/css"
+			 rel="stylesheet" />
+    <link href="/static/adhesin/css/second.css" type="text/css"
+			 rel="stylesheet" />
+    
+    <script src="/static/adhesin/js/first.js"></script>
+</head>
+<body>
+    <div id="header">
+        <a href="http://www.bicniced.org/"><img src="/static/adhesin/img/logo.png" class="small"  alt="niced logo"/></a>
+            <img src="/static/adhesin/img/header-2.png" class="medium"  />
+	         <li><a href="/adhesin/#Contact">Contact</a></li>
+	        <li><a href="/adhesin/#Citation">Citation</a></li>
+	         <li><a href="/adhesin/#Help">Help</a></li>
+	        <li><a href="/adhesin/#About">About</a></li>
+	        <li><a href="/adhesin/#face">Home</a></a></li>
+    </div>
+    <div class="main" id = "top" style="padding: 0% 1% 4% 1%">
+    <h1>Adhesin Detector Result</h1>
+        Page {{ pageNo }} of {{ totp }} <br><br>
+     <b>Threshold Limit : {% if thr == '0' %}None{% else %}{{ thr }}{% endif %}<b><br>
+     </div>
+     <div class="main">
+    <table width="500" cellpadding="2" cellspacing="1" border="1">
+           <tr>
+           <th scope="col"><h3>Rank</h3></th>
+           <th scope="col"><h3>Sequence</h3></th>
+           <th scope="col"><h3>Prediction</h3></th>
+           <th scope="col"><h3>Adhesin Probability</h3></th>
+           
+    </tr>
+    {% for result in results %}
+        <tr><td>{{ result.rank }}</td>
+        <td>{{ result.header }}</td>
+       
+        {% if result.cls == True %}<td id='green'>Adhesin</td>{% else %}<td id='red'>Non-Adhesin</td>{% endif %}
+         <td>{{ result.ans }}</td></tr>
+        {% endfor %}
+          </table>
+          </div>
+          <div class="main">
+  <p><label>To Download Result File Click <a href="{{ base }}{{ fname }}.txt" download="Adhesin_Results.csv">Here</a>
+  </label></p>
+   <p>{{ email_result }}</p>
+        <form action="{% url 'adhesin:nPage' %}" method="post" >
+        {% csrf_token %}
+           <input type='hidden' name="value"  value="{{ key }}" />
+            <input type='hidden' name="thr"  value="{{ thr }}" />
+           {% if next > 0 %}
+        <input type="Hidden" name="pageNo"  value="{{ next }}"   />
+        <input type="submit" value="Next Page"/>
+        <input type='hidden' name="thr"  value="{{ thr }}" />
+           {% endif %}
+        </form>
+        <form action="{% url 'adhesin:nPage' %}" method="post">
+        {% csrf_token %}
+           {% if prev %}
+            <input type='hidden' name="value"  value="{{ key }}" />
+            <input type='hidden' name="thr"  value="{{ thr }}" />
+        <input type="Hidden" name="pageNo"  value="{{ prev }}"   />
+        <input type="submit" value="Previous Page"/>
+            {% endif %}
+        </form>
+<br>
+</div>
+<div class="main">
+<form action="{% url 'adhesin:nPage' %}" method="post">
+        {% csrf_token %}
+    {% if total > perPage %}
+        <fieldset> <legend>Goto Page</legend>
+    <p><label> Enter Page Number :</label><input type="text" name="pageNo" size="3"   required="required" />
+    <input type='hidden' name="value"  value="{{ key }}" />
+    <input type='hidden' name="thr"  value="{{ thr }}" />
+    <input type="submit" value="Go"/>
+    </p></fieldset>
+      {% endif %}
+    </form>
+    </div>
+    </body>
+</html>

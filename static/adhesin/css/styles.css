@@ -1,0 +1,101 @@
+.formlet {background-color:white;
+        width:95%;
+        padding: 0%;
+        margin-left:2%;
+        display: inline-block;
+        background-color:#ffffff;
+    }
+#face{height:90%;
+      width:100%;
+      padding:6% 0% 0% 0%;
+      margin:0%;}
+#banner{
+      width:60%;
+      padding:0% 10% 0% 12%;
+      margin:0%;}
+textarea {
+    width: 100%;
+    height: 14em;
+}
+.formlet>div{
+         margin-right:0;
+         display: inline-block;
+         background-color:#ffffff;
+    }
+.fright{width:98%;
+        padding: 0% 0% 0% 0%; 
+         text-align:left;
+         display: inline-block;
+         background-color:#ffffff;
+    }
+    }
+#cmd { display: inline-block;
+      width:95%;
+      margin:2%
+      box-shadow: 1em 1em 0.5em grey;
+      background-color:black;
+}
+#samp { display: inline-block;
+    }
+#Home { width:74%;
+        padding:1% 1% 2% 1%;
+        margin:1% 14% 0% 12%; 
+         background-color:#ffffff;
+	 }
+
+h3 {  display: inline-block;
+      padding: 0% 0% 0% 4.75%;
+      background-color:#ffffff;
+	 }
+.block1, .block2{ width:96%;
+                   padding: 4% 2% 2% 2%;
+                   margin: 0%;
+                   display: block;
+                }
+
+.block2 { background:rgb(5, 133, 200);
+           color: white;
+}
+#form1{ width:75%; display: inline-block; margin-left:3%;background-color:#ffffff;
+        }
+#form2{ width:20%; display: inline-block; margin-right:0%;margin-left:0%;background-color:#ffffff;
+        }
+#reset { background-color: #f4511e;
+  border-radius: 0.5em;
+  color: #FFFFFF;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.25em;
+  padding: 1.5%;
+  width: 16%;
+  margin: 0% 0% 0% 0%;
+  box-shadow: 0em .5em 0em #fff;
+  top: 0em;
+  float:right;
+}
+#reset {
+  box-shadow: 0em 0.15em 0 #f3f3f3;
+  top: 0.15em;
+}
+
+
+#submit {  padding:1.5%;
+           cursor: pointer;  
+                  margin: 0% 2.5% 0% 0%;
+                  border-radius: 0.5em;
+                  text-align: center;
+                  font-size: 1.25em;
+                  background:#3498DB;
+                  color: #FFFFFF;
+                  width: 16%;
+                  box-shadow: 0em 0.15em 0 #f3f3f3;
+                  float:right;
+                  }
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+from django import forms
+
+
+class UploadFileForm(forms.Form):
+
+    upFile = forms.FileField(label="File:")
+    email = forms.EmailField(label='E-mail :', required = True )

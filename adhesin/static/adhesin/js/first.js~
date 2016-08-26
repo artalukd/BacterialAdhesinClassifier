@@ -1,0 +1,65 @@
+function validateForm() {
+    var x = document.getElementById("myForm")["E-mail"].value;
+    var z = document.getElementById("myForm")["seq"].value;
+    var a = document.getElementById("myForm")["upFile"].value;
+    var p = document.forms["myForm"].getAttribute("data-file-type");
+    var q = document.forms["myForm"].getAttribute("data-enctype");
+    var s = document.forms["myForm"].getAttribute("data-seq-type");
+    getIP();
+   if (x == null || x == "") {
+        alert("E-mail must be filled out.");
+        return false;
+    }
+   else (checkemail(x) != true) {
+        alert("Please Fill proper email.");
+        return false;
+    }
+       
+    if ((z == null || z == "") && (a == null || a == "")) {
+        alert("Please Enter Sequence in Text Box or Upload File " + a);
+        return false;
+    }
+    else if ((z == null || z == "") && (a != null || a != "")) {
+        alert("thank you file" + a +"  /"+p+q+s);
+        document.forms["myForm"].setAttribute("action", p);
+        document.forms["myForm"].setAttribute("enctype", q);;
+        return false;
+    } 
+     else if ((a == null || a == "") && (z != null || z != "")) {
+         alert("thank you seq" + z);
+        document.forms["myForm"].setAttribute("action", s);
+        return true;
+    }
+    else if ((z != null || z != "") && (a != null || a != "")) {
+       
+        alert("Please Enter either Sequence in Text Box or Upload File not both./"+a+"/"+z);
+        return false;
+    } 
+   
+ 
+}
+
+function checkemail(str){
+var filter=(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)
+if (filter.test(str))
+return true
+else{
+alert("Please input a valid email address!  " + str)
+return false
+}
+}
+
+function getIP() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("myForm")["IP"].value = xhttp.responseText;
+    }
+  };
+  xhttp.open("GET", "http://ip-api.com/json", true);
+  xhttp.send();
+}
+
+
+
+

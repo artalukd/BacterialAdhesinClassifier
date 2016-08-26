@@ -1,0 +1,125 @@
+<html>
+<head>
+    <title>Adhesin Predictor</title>
+    {% load staticfiles %}
+    <link href="/static/adhesin/css/first.css" type="text/css"
+			 rel="stylesheet" />
+     <link href="/static/adhesin/css/styles.css" type="text/css"
+			 rel="stylesheet" />
+	 <script src="/static/adhesin/js/second.js"></script>
+	 <script src="/static/adhesin/js/first.js"></script>
+</head>
+
+    <body>
+    <div id="face">
+    <div id="header">
+        <a href="http://www.bicniced.org/"><img src="/static/adhesin/img/logo.png" class="small"  alt="niced logo"/></a>
+            <img src="/static/adhesin/img/header-2.png" class="medium"  />
+	        
+	        <li><a href="#Contact">Contact</a></li>
+	        <li><a href="#Citation">Citation</a></li>
+	         <li><a href="#Help">Help</a></li>
+	        <li><a href="#About">About</a></li>
+	        <li><a href="#face">Home</a></a></li>
+    </div><div id="banner"><p style ="color:white">Welcome to <br><b style ="text-indent:25px; font-size: 150%;">  Bacterial Adhesin Prediction Server</b> 
+    <br><i style ="text-indent:25px;">A machine learning techinque for prediction of bacterial adhesin protein</i><p></div>
+    <div id="Home" class="block1"><div>
+    
+    <div id = "cmd" >
+    <h3><label>Enter Protein sequence(s) (FASTA format): <label></h3>
+        <button  id="samp" onclick="myExample()">Sample Input</button></div>
+          </div> 
+             <form id="myForm" action=""  enctype=""   data-seq-type="{% url 'adhesin:inText' %}"  data-enctype="multipart/form-data" 
+             data-file-type="{% url 'adhesin:wait' %}" method="post" >
+     <div id = "form1">
+        
+        {% csrf_token %}
+        <div class = "formlet"><div class = "fright">
+        <textarea id = "text" name="seq" placeholder="Paste your FASTA sequence here..."></textarea><br><br>
+        <b>Or Upload corresponding file. (Recommended for above 10 entries)</b><br><br>
+        <div style="display: inline-block;" >
+        File :   <input type="file" name="upFile" /><br>
+        <br>
+        <label>E-mail :  
+        </label><input name="E-mail" type="email" placeholder="To receive results by mail" /></div>
+        <input  name="IP" type="hidden" value="error"/>
+        <button id = "reset" type="reset" >Reset</button>
+        <input type="submit" id="submit" value="Submit" onclick = "validateForm()" />
+        </div>
+        </div></div>
+         <objectv style="align: bottom; ">
+                <div id = "form2" >
+       
+      
+          <script>
+            function changeFormat() {    
+    var box = document.getElementById('format');
+    var format = box.options[box.selectedIndex].text;
+    var head = "";
+    var ins = "";
+    if (format == 'FASTA Sequence'){
+        head = "Paste your FASTA sequence here...";
+        ins = "Enter Protein <mark>FASTA sequence(s)</mark> :";
+       } else if (format == 'GenBank Identifier'){
+        head = "Enter GenBank Identifier seperated by ','";
+        ins = " Enter Protein <mark>GenBank Identifier</mark> :";
+    } else if (format == 'Uniprot Identifier'){
+        head = "Enter Uniprot Identifier seperated by ','";
+        ins = " Enter Protein <mark>Uniprot Identifier</mark> :";
+    }
+    document.getElementById('text').value="";
+    document.getElementById('text').placeholder=head;
+    document.getElementsByTagName('label')[0].innerHTML=ins;
+  
+}</script>
+        Input format :<br>
+        <select name="format" id="format" onchange="changeFormat()">
+            <option value="F">FASTA Sequence</option>
+            <option value="G">GenBank Identifier</option>
+            <option value="U">Uniprot Identifier</option>
+        </select>     <br><br>          
+        Classifier Algorithm :<br>
+        <select name="algo">
+            <option value="R">Random Forest</option>
+            <option value="L">Logistic Regression</option>
+            <option value="D">Decision Tree Classifier</option>
+            <option value="S">Support Vector Machine</option>
+            <option value="G">Gaussian NB</option>
+            <option value="K">K Neighbours Classifier</option>
+        </select>
+         <br><br>
+        Threshold : <br><select name="thr">
+            <option value="0">None</option>
+            <option value="0.6">0.6</option>
+            <option value="0.7">0.7</option>
+            <option value="0.8">0.8</option>
+            <option value="0.9">0.9</option>
+        </select>
+        <div>
+        <script type="text/javascript" src="//rc.revolvermaps.com/0/0/2.js?i=2il29lvdrj4&amp;m=0&amp;s=130&amp;c=ff0000&amp;t=1"
+         async="async"></script></div>
+        </div></object>
+        </div></form></div></div></div>
+    <div id = "About" class="block2"><h2>About</h2>
+    
+    <p> The Biomedical Informatics Centre (BIC) of National Institute of Cholera and Enteric Diseases,<br>
+     Kolkata was established in July, 2006. <br>
+    This is the one of the 20 centres created by the Indian Council of Medical Research (ICMR), 
+    Govt. of India with a mission to ensure balanced and integrated development of information dissemination, 
+    application development and R&D in biomedical informatics. The centre was entrusted with the responsibility of facilitating
+     the development of an interdisciplinary approach <br>through independent and collaborative research activities.<br>  
+    The centre organizes training courses, workshops and seminars on biomedical informatics to encourage and 
+    <br>motivate scientific and research community.<br>
+    <img src="/static/adhesin/img/fig1.jpg" style="width:10%" />
+</p>
+    
+    
+    
+    </div>
+    <div id = "Help" class="block1"><h2>Help</h2>
+     You may consider resubmission filtering of sequences using perl program <a href="/media/fasta_filter.pl" download="fasta_filter.pl"> filter.pl <a/> 
+             (command: perl filter.pl)</div>
+    <div id = "Citation" class="block2"><h2>Citation</h2></div>
+    <div id = "Contact" class="block1"><h2>Contact</h2></div>
+    </body>
+</html>
